@@ -11,11 +11,11 @@ create_package(wd = "", pname = "", scripts_dir = "", scripts = "",
 \arguments{
 \item{wd}{Worikng directory (where the package should be created).}
 
-\item{pname}{Pakcage name.}
+\item{pname}{Package name.}
 
-\item{scripts_dir}{Directory with scripts to be put into the package.}
+\item{scripts_dir}{Directory with scripts to be packaged.}
 
-\item{scripts}{Names of scripts to be put into the package.}
+\item{scripts}{Names of scripts to be packaged.}
 
 \item{install_after}{Set to TRUE if the package should be installed after creation.}
 }

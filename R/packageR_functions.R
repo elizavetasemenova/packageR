@@ -2,9 +2,9 @@
 #' You only need to work out some clever code.
 #'
 #' @param wd Worikng directory (where the package should be created).
-#' @param pname Pakcage name.
-#' @param scripts_dir Directory with scripts to be put into the package.
-#' @param scripts Names of scripts to be put into the package.
+#' @param pname Package name.
+#' @param scripts_dir Directory with scripts to be packaged.
+#' @param scripts Names of scripts to be packaged.
 #' @param install_after Set to TRUE if the package should be installed after creation.
 #' @export
 #' @examples
@@ -70,4 +70,17 @@ create_package <- function(wd='', pname='', scripts_dir='', scripts ='', install
     devtools::install(pname)
     print(paste('Package ', pname, ' installed.', sep=''))
   }
-  }
+}
+
+#' This function updates a package.
+#'
+#' @param wd Worikng directory (where the package repository is located).
+#' @param pname Package name.
+#' @export
+#' @examples
+#' update_package(wd, pname, install=T)
+update_package <- function(wd='', pname='', install_after=FALSE){
+  setwd(wd)
+  setwd(paste("./", pname,"/R", sep=''))
+  devtools::document()
+}
