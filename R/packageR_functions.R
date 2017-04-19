@@ -10,7 +10,8 @@
 #' @examples
 #' create_package(wd, pname, install=T, scripts_dir, script_name)
 
-create_package <- function(wd='', pname='', scripts_dir='', scripts ='', install_after=FALSE){
+create_package <- function(wd='', pname='', scripts_dir='', scripts ='', install_after=FALSE,
+                           replace=TRUE){
   
   if (length(wd)==0){
     wd <- getwd()
@@ -22,14 +23,28 @@ create_package <- function(wd='', pname='', scripts_dir='', scripts ='', install
     pname <- 'mypackage'
     cat('The package name parameter \'pname\' was specified as empty. 
         The package will be called \'mypackage\'.')
-  } 
+  }
+  
+  if (length(scripts_dir)==0){
+    cat('The package name parameter \'scripts_dir\' was specified as empty.')
+    return(-1)
+  }
+  
+  if (length(scripts)==0){
+    cat('The package name parameter \'scripts_dir\' was specified as empty.')
+    return(-1)
+  }
   
   setwd(wd)
   
   #  Check if repository with this name already exists
   if(file.exists(pname)){
-    print('Package with this name already exists in repository.')
-    return(-1)
+    if (replace)
+      print('Package with this name already exists in repository and will be replaced.')
+    else {
+      print('Package with this name already exists in repository.')
+      return(-1)
+    }
   }
   
   devtools::create(pname)
@@ -46,14 +61,13 @@ create_package <- function(wd='', pname='', scripts_dir='', scripts ='', install
   # copy the files to the new folder
   file.copy(paste(scripts_dir, scripts, sep='/'), new_folder)
   print('R-scripts created.')
- 
- devtools::document()
- print('Documentation created.')
- 
- if (install_after){
-   setwd(wd)
-   devtools::install(pname)
-   print(paste('Package ', pname, ' installed.', sep=''))
- }
-}
-
+  
+  devtools::document()
+  print('Documentation created.')
+  
+  if (install_after){
+    setwd(wd)
+    devtools::install(pname)
+    print(paste('Package ', pname, ' installed.', sep=''))
+  }
+  }

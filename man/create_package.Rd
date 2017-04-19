@@ -6,7 +6,7 @@
 You only need to work out some clever code.}
 \usage{
 create_package(wd = "", pname = "", scripts_dir = "", scripts = "",
-  install_after = FALSE)
+  install_after = FALSE, replace = TRUE)
 }
 \arguments{
 \item{wd}{Worikng directory (where the package should be created).}
