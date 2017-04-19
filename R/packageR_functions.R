@@ -9,6 +9,7 @@
 #' @export
 #' @examples
 #' create_package(wd, pname, install=T, scripts_dir, script_name)
+#' update_package(wd, pname, install=T)
 
 create_package <- function(wd='', pname='', scripts_dir='', scripts ='', install_after=FALSE,
                            replace=TRUE){

@@ -25,4 +25,5 @@ You only need to work out some clever code.
 }
 \examples{
 create_package(wd, pname, install=T, scripts_dir, script_name)
+update_package(wd, pname, install=T)
 }
